@@ -1,0 +1,38 @@
+name: Daily FSS Scraper
+
+# 트리거: 매일 한국 시간 오전 9시 (UTC 0시) 또는 수동 실행
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  scrape-and-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 저장소 체크아웃
+        uses: actions/checkout@v3
+
+      - name: 파이썬 설정
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: 라이브러리 설치
+        run: |
+          pip install -r requirements.txt
+
+      - name: 크롤러 실행 (데이터 다운로드)
+        run: python scraper.py
+
+      - name: 변경 사항 깃허브에 저장 (Commit & Push)
+        run: |
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@github.com"
+          git add data/
+          # 변경사항이 있을 때만 커밋
+          git commit -m "Auto-update: 금감원 보이스피싱 사례 파일 업데이트" || exit 0
+          git push
