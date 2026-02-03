@@ -1,0 +1,14 @@
+# 가상환경 폴더 무시
+.venv/
+venv/
+ENV/
+
+# 파이썬 캐시 파일 무시
+__pycache__/
+*.py[cod]
+
+# 맥(Mac) 시스템 파일 무시 (혹시 모르니)
+.DS_Store
+
+# VS Code 설정 파일 무시
+.vscode/
