@@ -6,7 +6,7 @@ from google.generativeai.types import HarmCategory, HarmBlockThreshold
 
 # === 설정 ===
 # [중요] 구글 AI 스튜디오에서 받은 키를 여기에 넣으세요
-API_KEY = "AIzaSyDKNOun-pa-TNVVktob9PsVJg-VASdkrq4" 
+API_KEY ="rq4" 
 DATA_DIR = "data"
 
 # 라이브러리 설정
